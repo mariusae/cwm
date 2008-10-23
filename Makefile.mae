@@ -1,0 +1,13 @@
+OBJS=calmwm.o client.o conf.o xfont.o grab.o group.o input.o \
+     kbfunc.o menu.o screen.o search.o util.o xevents.o \
+     xmalloc.o xutil.o strlcpy.o strlcat.o parse.o strtonum.o mousefunc.o
+
+CFLAGS=-I/usr/include/X11 -I/usr/include/freetype2 -Icompat -I.
+
+cwm: $(OBJS)
+	cc $(CFLAGS) -o $@ $(OBJS) -lXft -lXrender -lX11 -lXau -lXdmcp \
+	   -lfontconfig -lexpat -lfreetype -lz -lXext -lXinerama -lXrandr
+
+
+clean:
+	rm -f $(OBJS)
